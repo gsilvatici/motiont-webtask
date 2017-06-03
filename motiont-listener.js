@@ -1,4 +1,3 @@
-var parallel    = require('async').parallel;
 var MongoClient = require('mongodb').MongoClient;
 
 function save_data(values, db, cb) {
@@ -9,14 +8,13 @@ function save_data(values, db, cb) {
     .insertOne(doc, function (err) {
       if(err) return cb(err);
 
-      console.log('Successfully saved %s', word);
+      console.log('Successfully saved %s' + doc.toString());
 
       cb(null);
     });
 }
 
 module.exports = function (ctx, done) {
-
   var values = {
     acceleration: ctx.data.accel,
     time: ctx.data.time,
