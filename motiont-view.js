@@ -39,7 +39,7 @@ return (ctx, req, res) => {
 
         const view_ctx = {
           values: values.sort( (record1, record2) => {
-            return record1.time - record2.time;
+            return record2.time.localeCompare(record1.time);
           })
         };
 

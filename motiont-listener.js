@@ -8,7 +8,7 @@ function save_data(values, db, cb) {
     .insertOne(doc, function (err) {
       if(err) return cb(err);
 
-      console.log('Successfully saved %s' + doc.toString());
+      console.log('Successfully saved %s' + doc.toString);
 
       cb(null);
     });
@@ -24,7 +24,6 @@ module.exports = function (ctx, done) {
 
   MongoClient.connect(ctx.data.MONGO_URL, function (err, db) {
     if(err) return done(err);
-    db.collection('records').drop();
 
     save_data(values, db,function (err) {
           if(err) return done(err);
