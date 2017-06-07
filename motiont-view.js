@@ -39,7 +39,16 @@ return (ctx, req, res) => {
 
         const view_ctx = {
           values: values.sort( (record1, record2) => {
-            return record2.time.localeCompare(record1.time);
+            var aux1 = record1.time.split(' ');
+            var aux2 = aux1[0].split('/');
+            var aux1 = aux1[1].split(':');
+            var time1 = new Date(aux2[2], aux2[0], aux2[1], aux1[0], aux1[1], aux1[2], 0);
+
+            aux1 = record2.time.split(' ');
+            aux2 = aux1[0].split('/');
+            aux1 = aux1[1].split(':');
+            var time2 = new Date(aux2[2], aux2[0], aux2[1], aux1[0], aux1[1], aux1[2], 0);
+            return time2 - time1;
           })
         };
 
